@@ -184,7 +184,7 @@ const MentionInput: FC<MentionInputProps> = ({
         onSelectionChange={handleSelectionChange}
       >
         <Text>
-          {parts.map(({ text, position, partType, data }, index) => {
+          {parts.map(({ text, partType, data }, index) => {
             // console.log(
             //   `parts text: ${text}, position: ${position.start} -- ${position.end}, partType: ${partType?.textStyle}, data: ${data?.id} -- ${data?.name} -- ${data?.original} -- ${data?.trigger}`
             // );
