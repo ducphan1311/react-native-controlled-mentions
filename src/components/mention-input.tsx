@@ -30,14 +30,13 @@ const MentionInput: FC<MentionInputProps> = ({
 
   ...textInputProps
 }) => {
-  const [textValue, setTextValue] = useState(value);
   const textInput = useRef<TextInput | null>(null);
 
   const [selection, setSelection] = useState({ start: 0, end: 0 });
 
   const { plainText, parts } = useMemo(
-    () => parseValue(textValue, partTypes),
-    [textValue, partTypes]
+    () => parseValue(value, partTypes),
+    [value, partTypes]
   );
 
   const handleSelectionChange = (
