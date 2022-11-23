@@ -186,7 +186,7 @@ const MentionInput: FC<MentionInputProps> = ({
         <Text>
           {parts.map(({ text, position, partType, data }, index) => {
             console.log(
-              `parts text: ${text}, position: ${position}, partType: ${partType}, data: ${data}`
+              `parts text: ${text}, position: ${position.start} -- ${position.end}, partType: ${partType?.textStyle}, data: ${data?.id} -- ${data?.name} -- ${data?.original} -- ${data?.trigger}`
             );
             partType ? (
               <Text
