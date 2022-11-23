@@ -180,10 +180,18 @@ const MentionInput: FC<MentionInputProps> = ({
         onChangeText={(text) => {
           onChangeInput(text);
           parts.map((e, index) => {
+            console.log(
+              `onChange: position: ${e.position.end} -- ${e.position.start}`
+            );
+            console.log(
+              `onChange: selection: ${selection.end} -- ${selection.start}`
+            );
+
             if (
               e.position.end >= selection.end &&
               e.position.start < selection.start
             ) {
+              console.log("parts before: ", e);
               parts.splice(index, 1);
             }
           });
