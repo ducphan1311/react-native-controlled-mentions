@@ -187,7 +187,7 @@ const MentionInput: FC<MentionInputProps> = ({
                 key={`${index}-${data?.trigger ?? "pattern"}`}
                 style={partType.textStyle ?? defaultMentionTextStyle}
               >
-                {text}
+                {text.replace(`${data?.trigger}`, "")}
               </Text>
             ) : (
               <Text key={index}>{text}</Text>
