@@ -361,7 +361,8 @@ const generateRegexResultPart = (partType: PartType, result: RegexMatchResult, p
  * @param trigger
  * @param suggestion
  */
-const getMentionValue = (trigger: string, suggestion: Suggestion) => `${trigger}[${suggestion.name}](${suggestion.id})`;
+// const getMentionValue = (trigger: string, suggestion: Suggestion) => `${trigger}[${suggestion.name}](${suggestion.id})`;
+const getMentionValue = (trigger: string, suggestion: Suggestion) => `${trigger}{${suggestion.name},${suggestion.id}}`;
 
 const getMentionDataFromRegExMatchResult = ([, original, trigger, name, id]: RegexMatchResult): MentionData => ({
   original,
@@ -400,10 +401,6 @@ const parseValue = (
 
     const matches: RegexMatchResult[] = Array.from(matchAll(value ?? '', regex));
 
-    console.log('regex: ', regex);
-
-    console.log('matches: ', matches);
-
     // In case when we didn't get any matches continue parsing value with rest part types
     if (matches.length === 0) {
       return parseValue(value, restPartTypes, positionOffset);
@@ -421,8 +418,6 @@ const parseValue = (
     // Iterating over all found pattern matches
     for (let i = 0; i < matches.length; i++) {
       const result = matches[i];
-      console.log(`parseValue: ${value}: `, result)
-
       if (isMentionPartType(partType)) {
         const mentionData = getMentionDataFromRegExMatchResult(result);
 
