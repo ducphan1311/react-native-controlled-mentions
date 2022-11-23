@@ -26,7 +26,8 @@ const mentionRegEx = /((.){([^{}]*),([0-9]+)})/gi;
 
 const defaultMentionTextStyle: StyleProp<TextStyle> = {fontWeight: 'bold', color: 'blue'};
 
-const defaultPlainStringGenerator = ({trigger}: MentionPartType, {name}: MentionData) => `${trigger}${name}`;
+// const defaultPlainStringGenerator = ({trigger}: MentionPartType, {name}: MentionData) => `${trigger}${name}`;
+const defaultPlainStringGenerator = ({trigger}: MentionPartType, {name}: MentionData) => `${name}`;
 
 const isMentionPartType = (partType: PartType): partType is MentionPartType => {
   return (partType as MentionPartType).trigger != null;
