@@ -21,7 +21,8 @@ import {
  * - Name - "Full Name"
  * - Id - "123abc"
  */
-const mentionRegEx = /((.)\[([^[]*)]\(([^(^)]*)\))/gi;
+// const mentionRegEx = /((.)\[([^[]*)]\(([^(^)]*)\))/gi;
+const mentionRegEx = /((.){([^{}]*),([0-9]+)})/gi;
 
 const defaultMentionTextStyle: StyleProp<TextStyle> = {fontWeight: 'bold', color: 'blue'};
 
