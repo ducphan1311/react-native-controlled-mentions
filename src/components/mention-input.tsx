@@ -31,13 +31,14 @@ const MentionInput: FC<MentionInputProps> = ({
 
   ...textInputProps
 }) => {
-  console.log("MentionInput value: ", value);
+  const [textValue, setTextValue] = useState(value);
   const textInput = useRef<TextInput | null>(null);
 
   const [selection, setSelection] = useState({ start: 0, end: 0 });
 
-  const [{ plainText, parts }, setText] = useState(
-    useMemo(() => parseValue(value, partTypes), [value, partTypes])
+  const { plainText, parts } = useMemo(
+    () => parseValue(textValue, partTypes),
+    [textValue, partTypes]
   );
 
   const handleSelectionChange = (
@@ -192,10 +193,10 @@ const MentionInput: FC<MentionInputProps> = ({
               position.start < selection.start &&
               partType
             ) {
-              console.log("parts before: ", parts[index]);
-              parts.splice(index, 1);
-              setText({ plainText, parts });
-              console.log("parts after: ", parts[index]);
+              // console.log("parts before: ", parts[index]);
+              // parts.splice(index, 1);
+              setTextValue(value.replace(`${text}`, ""));
+              // console.log("parts after: ", parts[index]);
             }
           });
         }}
