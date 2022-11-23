@@ -33,7 +33,6 @@ const MentionInput: FC<MentionInputProps> = ({
 
   ...textInputProps
 }) => {
-
   // const [selection, setSelection] = useState(selection);
 
   const { plainText, parts } = useMemo(
@@ -186,7 +185,7 @@ const MentionInput: FC<MentionInputProps> = ({
       <TextInput
         multiline
         {...textInputProps}
-        selection={selection}
+        // selection={selection}
         ref={handleTextInputRef}
         onChangeText={(text) => {
           onChangeInput(text, parts, selection);
