@@ -18,6 +18,7 @@ import {
 } from "../utils";
 
 const MentionInput: FC<MentionInputProps> = ({
+  textInput,
   value,
   onChange,
   selection,
@@ -32,7 +33,6 @@ const MentionInput: FC<MentionInputProps> = ({
 
   ...textInputProps
 }) => {
-  const textInput = useRef<TextInput | null>(null);
 
   // const [selection, setSelection] = useState(selection);
 

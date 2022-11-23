@@ -92,6 +92,7 @@ type Part = {
 };
 
 type MentionInputProps = Omit<TextInputProps, 'onChange'> & {
+  textInput: React.MutableRefObject<TextInput | null>,
   value: string;
   onChange: (value: string, parts: Part[]) => any;
 
@@ -99,7 +100,7 @@ type MentionInputProps = Omit<TextInputProps, 'onChange'> & {
     start: number;
     end: number;
   },
-  
+
   setSelection: React.Dispatch<React.SetStateAction<{
     start: number;
     end: number;
