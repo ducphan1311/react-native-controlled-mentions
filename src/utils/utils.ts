@@ -275,7 +275,7 @@ const generateValueWithAddedSuggestion = (
     // Cursor is at the very end of parts or text row
     && (plainText.length === selection.end || parts[currentPartIndex]?.text.startsWith('\n', newMentionPartPosition.end));
 
-  return getValueFromParts([
+  const value = getValueFromParts([
     ...parts.slice(0, currentPartIndex),
 
     // Create part with string before mention
@@ -291,6 +291,15 @@ const generateValueWithAddedSuggestion = (
 
     ...parts.slice(currentPartIndex + 1),
   ]);
+  console.log(`getValueFromParts: ${parts.slice(0, currentPartIndex)} -- ${generatePlainTextPart(currentPart.text.substring(0, newMentionPartPosition.start))} -- ${generateMentionPart(mentionType, {
+    original: getMentionValue(mentionType.trigger, suggestion),
+    trigger: mentionType.trigger,
+    ...suggestion,
+  })} -- ${generatePlainTextPart(`${isInsertSpaceToNextPart ? ' ' : ''}${currentPart.text.substring(newMentionPartPosition.end)}`)} -- ${parts.slice(currentPartIndex + 1)}`),
+
+  console.log('generateValueWithAddedSuggestion: ', value);
+
+  return value;
 };
 
 /**
