@@ -190,7 +190,7 @@ const MentionInput: FC<MentionInputProps> = ({
                 key={`${index}-${data?.trigger ?? "pattern"}`}
                 style={partType.textStyle ?? defaultMentionTextStyle}
               >
-                {text}
+                {text} {position} {partType} {data}
               </Text>
             ) : (
               <Text key={index}>{text}</Text>
