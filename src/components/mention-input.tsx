@@ -44,7 +44,8 @@ const MentionInput: FC<MentionInputProps> = ({
   const handleSelectionChange = (
     event: NativeSyntheticEvent<TextInputSelectionChangeEventData>
   ) => {
-    setSelection(event.nativeEvent.selection);
+    console.log("handleSelectionChange: ", event.nativeEvent.selection);
+    // setSelection(event.nativeEvent.selection);
 
     onSelectionChange && onSelectionChange(event);
   };
