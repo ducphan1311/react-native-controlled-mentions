@@ -129,6 +129,42 @@ const MentionInput: FC<MentionInputProps> = ({
     </React.Fragment>
   );
 
+  const convertHashTag = (initialText: string) => {
+    return (
+      <Text key={123} style={{ fontSize: 14, fontWeight: "400" }}>
+        {initialText?.length > 0 &&
+          initialText.split(" ").map((t, index) => textItem(t, index))}
+      </Text>
+    );
+  };
+
+  const textItem = (t: string, index: number) => {
+    if (t.includes("$")) {
+      return (
+        <Text
+          key={`${index}-stock`}
+          style={{ color: "blue", fontSize: 14, fontWeight: "400" }}
+        >{`${t.replace("$", "")} `}</Text>
+      );
+    } else if (t.includes("%")) {
+      return (
+        <Text
+          key={`${index}-user`}
+          style={{ color: "green", fontSize: 14, fontWeight: "400" }}
+        >{`${t.replace("%", "")} `}</Text>
+      );
+    } else {
+      return (
+        <Text
+          key={`${index}-default`}
+          style={{ color: "white", fontSize: 14, fontWeight: "400" }}
+        >
+          {t}
+        </Text>
+      );
+    }
+  };
+
   return (
     <View style={containerStyle}>
       {(
@@ -148,18 +184,20 @@ const MentionInput: FC<MentionInputProps> = ({
         onSelectionChange={handleSelectionChange}
       >
         <Text>
-          <Text>hahahahaha okok oe</Text>
-          {parts.map(({ text, partType, data }, index) =>
-            partType ? (
-              <Text
-                key={`${index}-${data?.trigger ?? "pattern"}`}
-                style={partType.textStyle ?? defaultMentionTextStyle}
-              >
-                {text}
-              </Text>
-            ) : (
-              <Text key={index}>{text}</Text>
-            )
+          {parts.map(
+            ({ text, partType, data }, index) =>
+              // partType ?
+              textItem(text, index)
+            // (
+            //   <Text
+            //     key={`${index}-${data?.trigger ?? "pattern"}`}
+            //     style={partType.textStyle ?? defaultMentionTextStyle}
+            //   >
+            //     {text}
+            //   </Text>
+            // ) : (
+            //   <Text key={index}>{text}</Text>
+            // )
           )}
         </Text>
       </TextInput>
