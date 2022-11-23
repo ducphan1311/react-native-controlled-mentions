@@ -20,6 +20,8 @@ import {
 const MentionInput: FC<MentionInputProps> = ({
   value,
   onChange,
+  selection,
+  setSelection,
   partTypes = [],
 
   inputRef: propInputRef,
@@ -32,7 +34,7 @@ const MentionInput: FC<MentionInputProps> = ({
 }) => {
   const textInput = useRef<TextInput | null>(null);
 
-  const [selection, setSelection] = useState({ start: 0, end: 0 });
+  // const [selection, setSelection] = useState(selection);
 
   const { plainText, parts } = useMemo(
     () => parseValue(value, partTypes),
@@ -62,9 +64,7 @@ const MentionInput: FC<MentionInputProps> = ({
   ) => {
     onChange(
       generateValueFromPartsAndChangedText(parts, plainText, changedText),
-      parts,
-      selection,
-      setSelection
+      parts
     );
   };
 
@@ -99,7 +99,7 @@ const MentionInput: FC<MentionInputProps> = ({
         return;
       }
 
-      onChange(newValue, parts, selection, setSelection);
+      onChange(newValue, parts);
 
       /**
        * Move cursor to the end of just added mention starting from trigger string and including:

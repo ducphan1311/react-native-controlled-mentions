@@ -93,13 +93,17 @@ type Part = {
 
 type MentionInputProps = Omit<TextInputProps, 'onChange'> & {
   value: string;
-  onChange: (value: string, parts: Part[], selection: {
+  onChange: (value: string, parts: Part[]) => any;
+
+  selection: {
     start: number;
     end: number;
-}, setSelection: React.Dispatch<React.SetStateAction<{
-  start: number;
-  end: number;
-}>>) => any;
+  },
+  
+  setSelection: React.Dispatch<React.SetStateAction<{
+    start: number;
+    end: number;
+  }>>
 
   partTypes?: PartType[];
 
