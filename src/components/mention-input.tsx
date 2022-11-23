@@ -185,19 +185,17 @@ const MentionInput: FC<MentionInputProps> = ({
       >
         <Text>
           {parts.map(
-            ({ text, partType, data }, index) =>
-              // partType ?
-              textItem(text, index)
-            // (
-            //   <Text
-            //     key={`${index}-${data?.trigger ?? "pattern"}`}
-            //     style={partType.textStyle ?? defaultMentionTextStyle}
-            //   >
-            //     {text}
-            //   </Text>
-            // ) : (
-            //   <Text key={index}>{text}</Text>
-            // )
+            ({ text, position, partType, data }, index) =>
+            partType ? (
+              <Text
+                key={`${index}-${data?.trigger ?? "pattern"}`}
+                style={partType.textStyle ?? defaultMentionTextStyle}
+              >
+                ` --${text} partType: ${partType} data: ${data} position: ${position}-- `
+              </Text>
+            ) : (
+              <Text key={index}>{text}</Text>
+            )
           )}
         </Text>
       </TextInput>
