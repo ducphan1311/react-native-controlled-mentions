@@ -155,10 +155,7 @@ const MentionInput: FC<MentionInputProps> = ({
       );
     } else {
       return (
-        <Text
-          key={`${index}-default`}
-          style={{ color: "white", fontSize: 14, fontWeight: "400" }}
-        >
+        <Text key={`${index}-default`} style={{ color: "white" }}>
           {t}
         </Text>
       );
@@ -184,21 +181,18 @@ const MentionInput: FC<MentionInputProps> = ({
         onSelectionChange={handleSelectionChange}
       >
         <Text>
-          {parts.map(({ text, partType, data }, index) => {
-            // console.log(
-            //   `parts text: ${text}, position: ${position.start} -- ${position.end}, partType: ${partType?.textStyle}, data: ${data?.id} -- ${data?.name} -- ${data?.original} -- ${data?.trigger}`
-            // );
+          {parts.map(({ text, partType, data }, index) =>
             partType ? (
               <Text
                 key={`${index}-${data?.trigger ?? "pattern"}`}
                 style={partType.textStyle ?? defaultMentionTextStyle}
               >
-                {text.replace(`${data?.trigger}`, "")}
+                {text}
               </Text>
             ) : (
               <Text key={index}>{text}</Text>
-            );
-          })}
+            )
+          )}
         </Text>
       </TextInput>
 
