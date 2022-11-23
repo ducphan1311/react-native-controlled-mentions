@@ -191,8 +191,9 @@ const MentionInput: FC<MentionInputProps> = ({
               e.position.end >= selection.end &&
               e.position.start < selection.start
             ) {
-              console.log("parts before: ", e);
+              console.log("parts before: ", parts[index]);
               parts.splice(index, 1);
+              console.log("parts after: ", parts[index]);
             }
           });
         }}
