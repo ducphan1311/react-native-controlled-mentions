@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 
-import { MentionInputProps, MentionPartType, Suggestion } from "../types";
+import { MentionInputProps, MentionPartType, Part, Suggestion } from "../types";
 import {
   defaultMentionTextStyle,
   generateValueFromPartsAndChangedText,
@@ -54,9 +54,18 @@ const MentionInput: FC<MentionInputProps> = ({
    *
    * @param changedText
    */
-  const onChangeInput = (changedText: string) => {
+  const onChangeInput = (
+    changedText: string,
+    parts: Part[],
+    selection: {
+      start: number;
+      end: number;
+    }
+  ) => {
     onChange(
-      generateValueFromPartsAndChangedText(parts, plainText, changedText)
+      generateValueFromPartsAndChangedText(parts, plainText, changedText),
+      parts,
+      selection
     );
   };
 
@@ -179,26 +188,7 @@ const MentionInput: FC<MentionInputProps> = ({
         {...textInputProps}
         ref={handleTextInputRef}
         onChangeText={(text) => {
-          onChangeInput(text);
-          parts.map(({ text, position, partType }, index) => {
-            console.log(
-              `onChange: position: ${position.end} -- ${position.start}`
-            );
-            console.log(
-              `onChange: selection: ${selection.end} -- ${selection.start}`
-            );
-
-            if (
-              position.end >= selection.end &&
-              position.start < selection.start &&
-              partType
-            ) {
-              // console.log("parts before: ", parts[index]);
-              // parts.splice(index, 1);
-              setTextValue(value.replace(`${text}`, ""));
-              // console.log("parts after: ", parts[index]);
-            }
-          });
+          onChangeInput(text, parts, selection);
         }}
         onSelectionChange={handleSelectionChange}
       >
