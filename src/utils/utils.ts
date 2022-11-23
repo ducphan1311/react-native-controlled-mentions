@@ -390,6 +390,10 @@ const parseValue = (
 
     const matches: RegexMatchResult[] = Array.from(matchAll(value ?? '', regex));
 
+    console.log('regex: ', regex);
+
+    console.log('matches: ', matches);
+
     // In case when we didn't get any matches continue parsing value with rest part types
     if (matches.length === 0) {
       return parseValue(value, restPartTypes, positionOffset);
