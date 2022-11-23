@@ -63,7 +63,8 @@ const MentionInput: FC<MentionInputProps> = ({
     onChange(
       generateValueFromPartsAndChangedText(parts, plainText, changedText),
       parts,
-      selection
+      selection,
+      setSelection
     );
   };
 
@@ -98,7 +99,7 @@ const MentionInput: FC<MentionInputProps> = ({
         return;
       }
 
-      onChange(newValue, parts, selection);
+      onChange(newValue, parts, selection, setSelection);
 
       /**
        * Move cursor to the end of just added mention starting from trigger string and including:
