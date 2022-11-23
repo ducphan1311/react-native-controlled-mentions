@@ -20,7 +20,6 @@ import {
 const MentionInput: FC<MentionInputProps> = ({
   value,
   onChange,
-
   partTypes = [],
 
   inputRef: propInputRef,
@@ -100,7 +99,7 @@ const MentionInput: FC<MentionInputProps> = ({
         return;
       }
 
-      onChange(newValue);
+      onChange(newValue, parts, selection);
 
       /**
        * Move cursor to the end of just added mention starting from trigger string and including:
