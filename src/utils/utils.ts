@@ -407,6 +407,7 @@ const parseValue = (
     // Iterating over all found pattern matches
     for (let i = 0; i < matches.length; i++) {
       const result = matches[i];
+      console.log(`parseValue: ${value}: `, result)
 
       if (isMentionPartType(partType)) {
         const mentionData = getMentionDataFromRegExMatchResult(result);
