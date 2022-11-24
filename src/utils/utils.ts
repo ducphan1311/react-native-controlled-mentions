@@ -23,6 +23,7 @@ import {
  */
 // const mentionRegEx = /((.)\[([^[]*)]\(([^(^)]*)\))/gi;
 const mentionRegEx = /((.){([^{}]*),([0-9]+)})/gi;
+const stockRegEx = /((.){(([^{}]*))})/gi;
 
 const defaultMentionTextStyle: StyleProp<TextStyle> = {fontWeight: 'bold', color: 'blue'};
 
@@ -398,7 +399,7 @@ const parseValue = (
   } else {
     const [partType, ...restPartTypes] = partTypes;
 
-    const regex = isMentionPartType(partType) ? mentionRegEx : partType.pattern;
+    const regex = isMentionPartType(partType) ? (partType.trigger === '@' ? mentionRegEx : stockRegEx) : partType.pattern;
 
     const matches: RegexMatchResult[] = Array.from(matchAll(value ?? '', regex));
 
