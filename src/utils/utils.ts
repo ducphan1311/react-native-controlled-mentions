@@ -363,7 +363,7 @@ const generateRegexResultPart = (partType: PartType, result: RegexMatchResult, p
  * @param suggestion
  */
 // const getMentionValue = (trigger: string, suggestion: Suggestion) => `${trigger}[${suggestion.name}](${suggestion.id})`;
-const getMentionValue = (trigger: string, suggestion: Suggestion) => `${trigger}{${suggestion.name},${suggestion.id}}`;
+const getMentionValue = (trigger: string, suggestion: Suggestion) => trigger === '@' ? `${trigger}{${suggestion.name},${suggestion.id}}` : `${trigger}{${suggestion.name}}`;
 
 const getMentionDataFromRegExMatchResult = ([, original, trigger, name, id]: RegexMatchResult): MentionData => ({
   original,
