@@ -43,7 +43,7 @@ const MentionInput: FC<MentionInputProps> = ({
   const handleSelectionChange = (
     event: NativeSyntheticEvent<TextInputSelectionChangeEventData>
   ) => {
-    // setSelection(event.nativeEvent.selection);
+    setSelection(event.nativeEvent.selection);
 
     onSelectionChange && onSelectionChange(event);
   };
@@ -184,7 +184,7 @@ const MentionInput: FC<MentionInputProps> = ({
       <TextInput
         multiline
         {...textInputProps}
-        selection={selection}
+        // selection={selection}
         ref={textInput}
         onChangeText={(text) => {
           onChangeInput(text, parts, selection);
