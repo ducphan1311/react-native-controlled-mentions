@@ -33,6 +33,7 @@ const MentionInput: FC<MentionInputProps> = ({
 
   ...textInputProps
 }) => {
+  console.log(`selection: start: ${selection.start} -- end: ${selection.end}`);
   // const [selection, setSelection] = useState(selection);
 
   const { plainText, parts } = useMemo(
