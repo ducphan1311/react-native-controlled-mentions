@@ -31,6 +31,8 @@ const MentionInput: FC<MentionInputProps> = ({
 
   onSelectionChange,
 
+  isChangeSelection = false,
+
   ...textInputProps
 }) => {
   console.log(`selection: start: ${selection.start} -- end: ${selection.end}`);
@@ -44,7 +46,7 @@ const MentionInput: FC<MentionInputProps> = ({
   const handleSelectionChange = (
     event: NativeSyntheticEvent<TextInputSelectionChangeEventData>
   ) => {
-    // setSelection(event.nativeEvent.selection);
+    setSelection(event.nativeEvent.selection);
 
     onSelectionChange && onSelectionChange(event);
   };
@@ -170,6 +172,7 @@ const MentionInput: FC<MentionInputProps> = ({
       );
     }
   };
+  
 
   return (
     <View style={containerStyle}>
@@ -185,7 +188,7 @@ const MentionInput: FC<MentionInputProps> = ({
       <TextInput
         multiline
         {...textInputProps}
-        selection={selection}
+        selection={isChangeSelection ? selection : undefined}
         ref={textInput}
         onChangeText={(text) => {
           onChangeInput(text, parts, selection);

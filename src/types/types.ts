@@ -111,6 +111,8 @@ type MentionInputProps = Omit<TextInputProps, 'onChange'> & {
   inputRef?: Ref<TextInput>;
 
   containerStyle?: StyleProp<ViewStyle>;
+
+  isChangeSelection?: boolean;
 };
 
 export type {
